@@ -75,7 +75,6 @@ var (
 		utils.TableColumns{
 			Definition: []metav1.TableColumnDefinition{
 				{Name: "Name", Type: "string", Format: "name"},
-				// {Name: "Intervals", Type: "string", Format: "string", Description: "The display name"},
 			},
 			Reader: func(obj any) ([]interface{}, error) {
 				r, ok := obj.(*TemplateGroup)
@@ -84,7 +83,6 @@ var (
 				}
 				return []interface{}{
 					r.Name,
-					// r.Spec, //TODO implement formatting for Spec, same as UI?
 				}, nil
 			},
 		},
