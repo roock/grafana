@@ -54,7 +54,6 @@ const config: ConfigFile = {
         'readNamespacedTemplateGroup',
         'replaceNamespacedTemplateGroup',
         'deleteNamespacedTemplateGroup',
-        'patchNamespacedTemplateGroup',
       ],
       exportName: 'generatedTemplatesApi',
       flattenArg: false,
