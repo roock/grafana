@@ -15,7 +15,7 @@ export type StringSelector = string;
  *
  * @alpha
  */
-export type FunctionSelector = (id: string) => string;
+export type FunctionSelector = (id: string, addiotionalArgs: string) => string;
 
 /**
  * A function selector without argument
@@ -34,7 +34,7 @@ export interface Selectors {
 /**
  * @alpha
  */
-export type E2ESelectors<S extends Selectors> = {
+export type E2ESelectorVariant<S extends Selectors> = {
   [P in keyof S]: S[P];
 };
 

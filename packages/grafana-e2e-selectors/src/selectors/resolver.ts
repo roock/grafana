@@ -1,20 +1,18 @@
-import { Components } from '../generated/components.gen';
-import { Pages } from '../generated/pages.gen';
-import { E2ESelectors, VersionedSelectors } from '../types';
+import { VersionedSelectors } from '../types';
 
 import { versionedAPIs } from './apis';
 import { versionedComponents } from './components';
 import { versionedPages } from './pages';
 
+import { E2ESelectorGroup } from '.';
+
 const semver = require('semver');
 
-type Selectors = { pages: E2ESelectors<typeof Pages>; components: E2ESelectors<typeof Components> };
-
 const processSelectors = (
-  selectors: Selectors,
+  selectors: E2ESelectorGroup,
   versionedSelectors: VersionedSelectors,
   grafanaVersion: string
-): Selectors => {
+): E2ESelectorGroup => {
   const keys = Object.keys(versionedSelectors);
   for (let index = 0; index < keys.length; index++) {
     const key = keys[index];
@@ -57,8 +55,8 @@ const processSelectors = (
  * than or equal to the Grafana version will be returned.
  * If the selector doesn't have a version, it will be returned as is.
  */
-export const resolveSelectors = (grafanaVersion: string): Selectors => {
-  const selectors: Selectors = {} as Selectors;
+export const resolveSelectors = (grafanaVersion: string): E2ESelectorGroup => {
+  const selectors: E2ESelectorGroup = {} as E2ESelectorGroup;
   const versionedSelectors = {
     pages: versionedPages,
     components: versionedComponents,
