@@ -1,5 +1,4 @@
 import { Components } from './components.gen';
-;
 /**
  * Selectors grouped/defined in Pages
  *
@@ -8,7 +7,7 @@ import { Components } from './components.gen';
 export const Pages = {
     Alerting: {
         AddAlertRule: {
-            url: '/alerting/new',
+            url: '/alerting/new/alerting',
         },
         EditAlertRule: {
             url: (alertRuleUid: string) => `alerting/${alertRuleUid}/edit`,

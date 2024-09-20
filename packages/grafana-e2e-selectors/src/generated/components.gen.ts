@@ -4,7 +4,6 @@
 // but you still might need to select it for testing,
 // in that case please add the attribute data-testid={selector} in the component and
 // prefix your selector string with 'data-testid' so that when create the selectors we know to search for it on the right attribute
-;
 /**
  * Selectors grouped/defined in Components
  */
@@ -61,18 +60,18 @@ export const Components = {
         },
         Prometheus: {
             configPage: {
-                connectionSettings: 'Data source connection URL', // aria-label in grafana experimental
-                manageAlerts: 'prometheus-alerts-manager', // id for switch component
+                connectionSettings: 'Data source connection URL',
+                manageAlerts: 'prometheus-alerts-manager',
                 scrapeInterval: 'data-testid scrape interval',
                 queryTimeout: 'data-testid query timeout',
                 defaultEditor: 'data-testid default editor',
-                disableMetricLookup: 'disable-metric-lookup', // id for switch component
+                disableMetricLookup: 'disable-metric-lookup',
                 prometheusType: 'data-testid prometheus type',
                 prometheusVersion: 'data-testid prometheus version',
                 cacheLevel: 'data-testid cache level',
-                incrementalQuerying: 'prometheus-incremental-querying', // id for switch component
+                incrementalQuerying: 'prometheus-incremental-querying',
                 queryOverlapWindow: 'data-testid query overlap window',
-                disableRecordingRules: 'disable-recording-rules', // id for switch component
+                disableRecordingRules: 'disable-recording-rules',
                 customQueryParameters: 'data-testid custom query parameters',
                 httpMethod: 'data-testid http method',
                 exemplarsAddButton: 'data-testid Add exemplar config button',
@@ -184,10 +183,6 @@ export const Components = {
                 },
             },
             BarGauge: {
-                /**
-                 * @deprecated use valueV2 from Grafana 8.3 instead
-                 */
-                value: 'Bar gauge value',
                 valueV2: 'data-testid Bar gauge value',
             },
             PieChart: {

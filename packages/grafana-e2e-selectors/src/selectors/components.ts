@@ -7,10 +7,12 @@
 
 import { MIN_GRAFANA_VERSION } from './constants';
 
+import { Components, VersionedSelectorGroup } from '.';
+
 /**
  * Selectors grouped/defined in Components
  */
-export const versionedComponents = {
+export const versionedComponents: VersionedSelectorGroup = {
   RadioButton: {
     container: {
       '10.2.3': 'data-testid radio-button',
@@ -125,16 +127,24 @@ export const versionedComponents = {
     },
     Prometheus: {
       configPage: {
-        connectionSettings: { [MIN_GRAFANA_VERSION]: 'Data source connection URL' }, // aria-label in grafana experimental
-        manageAlerts: { '10.4.0': 'prometheus-alerts-manager' }, // id for switch component
+        connectionSettings: {
+          [MIN_GRAFANA_VERSION]: 'Data source connection URL', // aria-label in grafana experimental
+        },
+        manageAlerts: {
+          '10.4.0': 'prometheus-alerts-manager', // id for switch component
+        },
         scrapeInterval: {
           '10.4.0': 'data-testid scrape interval',
         },
         queryTimeout: {
           '10.4.0': 'data-testid query timeout',
         },
-        defaultEditor: 'data-testid default editor',
-        disableMetricLookup: { '10.4.0': 'disable-metric-lookup' }, // id for switch component
+        defaultEditor: {
+          '10.4.0': 'data-testid default editor',
+        },
+        disableMetricLookup: {
+          '10.4.0': 'disable-metric-lookup', // id for switch component
+        },
         prometheusType: {
           '10.4.0': 'data-testid prometheus type',
         },
@@ -144,11 +154,15 @@ export const versionedComponents = {
         cacheLevel: {
           '10.4.0': 'data-testid cache level',
         },
-        incrementalQuerying: { '10.4.0': 'prometheus-incremental-querying' }, // id for switch component
+        incrementalQuerying: {
+          '10.4.0': 'prometheus-incremental-querying', // id for switch component
+        },
         queryOverlapWindow: {
           '10.4.0': 'data-testid query overlap window',
         },
-        disableRecordingRules: { '10.4.0': 'disable-recording-rules' }, // id for switch component
+        disableRecordingRules: {
+          '10.4.0': 'disable-recording-rules', // id for switch component
+        },
         customQueryParameters: {
           '10.4.0': 'data-testid custom query parameters',
         },
@@ -389,14 +403,12 @@ export const versionedComponents = {
           },
         },
         xAxis: {
-          labels: { [MIN_GRAFANA_VERSION]: () => 'div.flot-x-axis > div.flot-tick-label' },
+          labels: {
+            [MIN_GRAFANA_VERSION]: () => 'div.flot-x-axis > div.flot-tick-label',
+          },
         },
       },
       BarGauge: {
-        /**
-         * @deprecated use valueV2 from Grafana 8.3 instead
-         */
-        value: 'Bar gauge value',
         valueV2: {
           [MIN_GRAFANA_VERSION]: 'data-testid Bar gauge value',
         },
@@ -616,8 +628,12 @@ export const versionedComponents = {
     actionButton: {
       '10.4.0': (title: string) => `data-testid ${title}`,
     },
-    title: (refId: string) => `Query editor row title ${refId}`,
-    container: (refId: string) => `Query editor row ${refId}`,
+    title: {
+      '8.5.0': (refId: string) => `Query editor row title ${refId}`,
+    },
+    container: {
+      '8.5.0': (refId: string) => `Query editor row ${refId}`,
+    },
   },
   AlertTab: {
     content: {
@@ -998,7 +1014,9 @@ export const versionedComponents = {
       '10.3.0': 'data-testid Select label',
       [MIN_GRAFANA_VERSION]: 'Select label',
     },
-    inputSelect: 'data-testid Select label-input',
+    inputSelect: {
+      '11.1.0': 'data-testid Select label-input',
+    },
     valueSelect: {
       '10.3.0': 'data-testid Select value',
       [MIN_GRAFANA_VERSION]: 'Select value',
@@ -1045,7 +1063,7 @@ export const versionedComponents = {
       [MIN_GRAFANA_VERSION]: (sectionId: string) => `data-testid Expand folder ${sectionId}`,
     },
     dashboardItem: {
-      [MIN_GRAFANA_VERSION]: (item: string) => `${versionedComponents.Search.dashboardItems} ${item}`,
+      [MIN_GRAFANA_VERSION]: (item: string) => `${Components.Search.dashboardItems} ${item}`,
     },
     dashboardCard: {
       [MIN_GRAFANA_VERSION]: (item: string) => `data-testid Search card ${item}`,
@@ -1056,7 +1074,9 @@ export const versionedComponents = {
     folderContent: {
       '9.3.0': (folderName: string) => `data-testid Folder content ${folderName}`,
     },
-    dashboardItems: 'data-testid Dashboard search item',
+    dashboardItems: {
+      '8.5.0': 'data-testid Dashboard search item',
+    },
   },
   DashboardLinks: {
     container: {
@@ -1266,3 +1286,5 @@ export const versionedComponents = {
     },
   },
 };
+
+export type VersionedComponents = typeof versionedComponents;

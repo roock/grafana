@@ -92,9 +92,10 @@ const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
 
 for (const transformed of transformationResult.transformed) {
   let output = printer.printNode(ts.EmitHint.Unspecified, transformed, transformed.getSourceFile());
-  output = output.replace(/export const versioned/g, 'export const ');
-  output = output.replace(/..\/generated\//g, './');
-  output = output.replace(/versionedComponents./g, 'Components.');
+  output = output.replace(/export const versioned/g, 'export const '); // remove versioned prefixs
+  output = output.replace(/..\/generated\//g, './'); // adjust import paths
+  output = output.replace(/: VersionedSelectorGroup/, ''); // remove typings for versioned selectors
+  output = output.replace(/^;\n/gm, ''); // ts.factory.createEmptyStatement() leaves semicolon. need to investigate why
   const fileName = transformed.getSourceFile().fileName.replace(/\.ts$/, '.gen.ts');
   writeFile(resolve(join(process.cwd(), destDir, fileName)), output);
 }

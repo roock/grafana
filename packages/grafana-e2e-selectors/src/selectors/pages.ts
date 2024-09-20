@@ -2,16 +2,18 @@ import { Components } from '../generated/components.gen';
 
 import { MIN_GRAFANA_VERSION } from './constants';
 
+import { VersionedSelectorGroup } from '.';
+
 /**
  * Selectors grouped/defined in Pages
  *
  * @alpha
  */
-export const versionedPages = {
+export const versionedPages: VersionedSelectorGroup = {
   Alerting: {
     AddAlertRule: {
       url: {
-        ['10.1.0']: '/alerting/new/alerting',
+        '10.1.0': '/alerting/new/alerting',
         [MIN_GRAFANA_VERSION]: '/alerting/new',
       },
     },
@@ -166,7 +168,9 @@ export const versionedPages = {
       publicDashboardTag: {
         '9.1.0': 'data-testid public dashboard tag',
       },
-      shareButton: 'data-testid share-button',
+      shareButton: {
+        '10.4.0': 'data-testid share-button',
+      },
       scrollContainer: {
         '11.1.0': 'data-testid Dashboard canvas scroll container',
       },
@@ -614,7 +618,9 @@ export const versionedPages = {
       CopyUrlButton: {
         '9.1.0': 'data-testid public dashboard copy url button',
       },
-      SettingsDropdown: 'data-testid public dashboard settings dropdown',
+      SettingsDropdown: {
+        '10.1.0': 'data-testid public dashboard settings dropdown',
+      },
       TemplateVariablesWarningAlert: {
         '9.1.0': 'data-testid public dashboard disabled template variables alert',
       },
@@ -940,3 +946,5 @@ export const versionedPages = {
     },
   },
 };
+
+export type VersionedPages = typeof versionedPages;

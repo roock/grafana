@@ -4,9 +4,9 @@
  * @alpha
  */
 
-import { versionedAPIs } from '../selectors/apis';
-import { versionedComponents } from '../selectors/components';
-import { versionedPages } from '../selectors/pages';
+import { VersionedAPIs } from '../selectors/apis';
+import { VersionedComponents } from '../selectors/components';
+import { VersionedPages } from '../selectors/pages';
 
 export type StringSelector = string;
 
@@ -34,7 +34,7 @@ export interface Selectors {
 /**
  * @alpha
  */
-export type E2ESelectorVariant<S extends Selectors> = {
+export type E2ESelectors<S extends Selectors> = {
   [P in keyof S]: S[P];
 };
 
@@ -46,7 +46,7 @@ export interface UrlSelector extends Selectors {
 }
 
 export type VersionedSelectors = {
-  pages: typeof versionedPages;
-  components: typeof versionedComponents;
-  apis: typeof versionedAPIs;
+  pages: VersionedPages;
+  components: VersionedComponents;
+  apis: VersionedAPIs;
 };

@@ -1,6 +1,8 @@
 import { MIN_GRAFANA_VERSION } from './constants';
 
-export const versionedAPIs = {
+import { VersionedSelectorGroup } from '.';
+
+export const versionedAPIs: VersionedSelectorGroup = {
   Alerting: {
     eval: {
       [MIN_GRAFANA_VERSION]: '/api/v1/eval',
@@ -21,7 +23,7 @@ export const versionedAPIs = {
       [MIN_GRAFANA_VERSION]: '/api/ds/query',
     },
     health: {
-      ['9.5.0']: (uid: string, _: string) => `/api/datasources/uid/${uid}/health`,
+      '9.5.0': (uid: string, _: string) => `/api/datasources/uid/${uid}/health`,
       [MIN_GRAFANA_VERSION]: (_: string, id: string) => `/api/datasources/${id}/health`,
     },
     datasourceByUID: {
@@ -43,3 +45,5 @@ export const versionedAPIs = {
     },
   },
 };
+
+export type VersionedAPIs = typeof versionedAPIs;

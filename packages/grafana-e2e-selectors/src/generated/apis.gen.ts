@@ -1,4 +1,3 @@
-;
 export const APIs = {
     Alerting: {
         eval: '/api/v1/eval',
@@ -8,7 +7,7 @@ export const APIs = {
         resourceUIDPattern: '/api/datasources/uid/*/resources',
         queryPattern: '*/**/api/ds/query*',
         query: '/api/ds/query',
-        health: (_: string, id: string) => `/api/datasources/${id}/health`,
+        health: (uid: string, _: string) => `/api/datasources/uid/${uid}/health`,
         datasourceByUID: (uid: string) => `/api/datasources/uid/${uid}`,
         proxy: (uid: string, _: string) => `api/datasources/proxy/uid/${uid}`,
     },
