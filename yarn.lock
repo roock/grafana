@@ -3433,6 +3433,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@grafana/e2e-selectors@file:@grafana-e2e-selectors-11.3.0-pre.tgz::locator=%40grafana%2Fplugin-e2e%40file%3A%2FUsers%2Ferik%2Fcode%2Fgrafana%2Fplugin-tools%2Fpacked-artifacts%2Fgrafana-plugin-e2e-1.7.2.tgz%23%2FUsers%2Ferik%2Fcode%2Fgrafana%2Fplugin-tools%2Fpacked-artifacts%2Fgrafana-plugin-e2e-1.7.2.tgz%3A%3Ahash%3Dbeb552%26locator%3Dgrafana%2540workspace%253A.":
+  version: 11.3.0-pre
+  resolution: "@grafana/e2e-selectors@file:@grafana-e2e-selectors-11.3.0-pre.tgz#@grafana-e2e-selectors-11.3.0-pre.tgz::hash=b0991e&locator=%40grafana%2Fplugin-e2e%40file%3A%2FUsers%2Ferik%2Fcode%2Fgrafana%2Fplugin-tools%2Fpacked-artifacts%2Fgrafana-plugin-e2e-1.7.2.tgz%23%2FUsers%2Ferik%2Fcode%2Fgrafana%2Fplugin-tools%2Fpacked-artifacts%2Fgrafana-plugin-e2e-1.7.2.tgz%3A%3Ahash%3Dbeb552%26locator%3Dgrafana%2540workspace%253A."
+  dependencies:
+    "@grafana/tsconfig": "npm:^2.0.0"
+    tslib: "npm:2.7.0"
+    typescript: "npm:5.5.4"
+  checksum: 10/1d7dcf2084047867ce0ee4554cbfe59ee5b97705d99af94970d2bc60dcfc841c09c41a555aa8eaa0052b70f558c1dfd9e391e4867096d75b0cf61c3b2a269735
+  languageName: node
+  linkType: hard
+
 "@grafana/e2e-selectors@npm:11.3.0-pre, @grafana/e2e-selectors@workspace:*, @grafana/e2e-selectors@workspace:packages/grafana-e2e-selectors":
   version: 0.0.0-use.local
   resolution: "@grafana/e2e-selectors@workspace:packages/grafana-e2e-selectors"
@@ -3732,16 +3743,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@grafana/plugin-e2e@npm:1.7.2":
+"@grafana/plugin-e2e@file:/Users/erik/code/grafana/plugin-tools/packed-artifacts/grafana-plugin-e2e-1.7.2.tgz::locator=grafana%40workspace%3A.":
   version: 1.7.2
-  resolution: "@grafana/plugin-e2e@npm:1.7.2"
+  resolution: "@grafana/plugin-e2e@file:/Users/erik/code/grafana/plugin-tools/packed-artifacts/grafana-plugin-e2e-1.7.2.tgz#/Users/erik/code/grafana/plugin-tools/packed-artifacts/grafana-plugin-e2e-1.7.2.tgz::hash=beb552&locator=grafana%40workspace%3A."
   dependencies:
+    "@grafana/e2e-selectors": "file:@grafana-e2e-selectors-11.3.0-pre.tgz"
     semver: "npm:^7.5.4"
     uuid: "npm:^10.0.0"
     yaml: "npm:^2.3.4"
   peerDependencies:
     "@playwright/test": ^1.41.2
-  checksum: 10/415c83e118e16f93dd5b43f52327160650453d316616c1b9761b6209d128f85927d3672428156d6de1238a79c616ea7e0b098f519c2755e791ef21cb3e7c7cfd
+  checksum: 10/fdd72d6708504854855e37d87f44b35cf13509fdafecaedea0020a37c6e740ec399ecea71bd1590853b93d2f50839617db3533f99855820732f3b0b6229abf49
   languageName: node
   linkType: hard
 
@@ -18523,7 +18535,7 @@ __metadata:
     "@grafana/lezer-logql": "npm:0.2.6"
     "@grafana/monaco-logql": "npm:^0.0.7"
     "@grafana/o11y-ds-frontend": "workspace:*"
-    "@grafana/plugin-e2e": "npm:1.7.2"
+    "@grafana/plugin-e2e": /Users/erik/code/grafana/plugin-tools/packed-artifacts/grafana-plugin-e2e-1.7.2.tgz
     "@grafana/prometheus": "workspace:*"
     "@grafana/runtime": "workspace:*"
     "@grafana/saga-icons": "workspace:*"
