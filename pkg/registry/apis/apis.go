@@ -15,6 +15,7 @@ import (
 	"github.com/grafana/grafana/pkg/registry/apis/playlist"
 	"github.com/grafana/grafana/pkg/registry/apis/query"
 	"github.com/grafana/grafana/pkg/registry/apis/scope"
+	"github.com/grafana/grafana/pkg/registry/apis/secret"
 )
 
 var (
@@ -36,6 +37,7 @@ func ProvideRegistryServiceSink(
 	_ *iam.IdentityAccessManagementAPIBuilder,
 	_ *scope.ScopeAPIBuilder,
 	_ *query.QueryAPIBuilder,
+	_ *secret.SecretAPIBuilder,
 	_ *notifications.NotificationsAPIBuilder,
 ) *Service {
 	return &Service{}
