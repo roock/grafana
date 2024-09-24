@@ -9,7 +9,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
-	"k8s.io/apimachinery/pkg/runtime/serializer"
 	"k8s.io/apiserver/pkg/authorization/authorizer"
 	"k8s.io/apiserver/pkg/registry/generic"
 	"k8s.io/apiserver/pkg/registry/rest"
@@ -19,7 +18,6 @@ import (
 
 var _ builder.APIGroupBuilder = (*SecretAPIBuilder)(nil)
 
-// This is used just so wire has something unique to return
 type SecretAPIBuilder struct {
 	store secretstore.SecureValueStore
 }
@@ -57,14 +55,7 @@ func (b *SecretAPIBuilder) InstallSchema(scheme *runtime.Scheme) error {
 	return scheme.SetVersionPriority(secret.SchemeGroupVersion)
 }
 
-func (b *SecretAPIBuilder) GetAPIGroupInfo(
-	scheme *runtime.Scheme,
-	codecs serializer.CodecFactory, // pointer?
-	_ generic.RESTOptionsGetter,
-	_ grafanarest.DualWriteBuilder,
-) (*genericapiserver.APIGroupInfo, error) {
-	apiGroupInfo := genericapiserver.NewDefaultAPIGroupInfo(secret.GROUP, scheme, metav1.ParameterCodec, codecs)
-
+func (b *SecretAPIBuilder) UpdateAPIGroupInfo(apiGroupInfo *genericapiserver.APIGroupInfo, scheme *runtime.Scheme, optsGetter generic.RESTOptionsGetter, _ grafanarest.DualWriteBuilder) error {
 	resource := secret.SecureValuesResourceInfo
 	storage := map[string]rest.Storage{}
 	storage[resource.StoragePath()] = &secretStorage{
@@ -72,12 +63,11 @@ func (b *SecretAPIBuilder) GetAPIGroupInfo(
 		resource:       resource,
 		tableConverter: resource.TableConverter(),
 	}
-	storage[resource.StoragePath("view")] = &secretView{
+	storage[resource.StoragePath("decrypt")] = &secretDecrypt{
 		store: b.store,
 	}
-
 	apiGroupInfo.VersionedResourcesStorageMap[secret.VERSION] = storage
-	return &apiGroupInfo, nil
+	return nil
 }
 
 func (b *SecretAPIBuilder) GetOpenAPIDefinitions() common.GetOpenAPIDefinitions {

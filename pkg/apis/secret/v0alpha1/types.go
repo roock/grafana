@@ -32,6 +32,7 @@ type SecureValueList struct {
 	Items []SecureValue `json:"items,omitempty"`
 }
 
+// Subresource that provides history for how an item has been managed over time
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 type SecureValueActivityList struct {
 	metav1.TypeMeta `json:",inline"`
@@ -41,8 +42,8 @@ type SecureValueActivityList struct {
 }
 
 type SecureValueActivity struct {
-	Timestamp metav1.Timestamp `json:"timestamp"`
-	Action    string           `json:"action"` // CREATE, UPDATE, DELETE, etc
-	Identity  string           `json:"identity"`
-	Details   string           `json:"details,omitempty"`
+	Timestamp int64  `json:"timestamp"`
+	Action    string `json:"action"` // CREATE, UPDATE, DELETE, etc
+	Identity  string `json:"identity"`
+	Details   string `json:"details,omitempty"`
 }

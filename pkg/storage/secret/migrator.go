@@ -10,8 +10,6 @@ import (
 )
 
 func MigrateSecretStore(_ context.Context, engine *xorm.Engine, cfg *setting.Cfg) error {
-	// TODO: use the context.Context
-
 	mg := migrator.NewScopedMigrator(engine, cfg, "secure")
 	mg.AddCreateMigration()
 
@@ -64,15 +62,15 @@ func initSecretStore(mg *migrator.Migrator) string {
 	tables = append(tables, migrator.Table{
 		Name: "secure_value_history",
 		Columns: []*migrator.Column{
-			{Name: "uid", Type: migrator.DB_NVarchar, Length: 36},
-
-			{Name: "action", Type: migrator.DB_NVarchar, Length: 36, Nullable: false},
-			{Name: "who", Type: migrator.DB_NVarchar, Length: 128, Nullable: false},
-			{Name: "when", Type: migrator.DB_BigInt, Nullable: false},
-			{Name: "what", Type: migrator.DB_Text, Nullable: true}, // describe change (what fields)
+			{Name: "namespace", Type: migrator.DB_NVarchar, Length: 36, Nullable: false},
+			{Name: "name", Type: migrator.DB_NVarchar, Length: 128, Nullable: false},
+			{Name: "ts", Type: migrator.DB_BigInt, Nullable: false},
+			{Name: "action", Type: migrator.DB_NVarchar, Length: 36, Nullable: false},    // CREATE, UPDATE, DELETE
+			{Name: "identity", Type: migrator.DB_NVarchar, Length: 128, Nullable: false}, // WHO
+			{Name: "details", Type: migrator.DB_Text, Nullable: false},                   // description
 		},
 		Indices: []*migrator.Index{
-			{Cols: []string{"uid"}, Type: migrator.IndexType},
+			{Cols: []string{"namespace", "name"}, Type: migrator.IndexType},
 		},
 	})
 
