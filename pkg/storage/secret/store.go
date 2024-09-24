@@ -241,7 +241,15 @@ func (s *secureStore) Create(ctx context.Context, v *secret.SecureValue) (*secre
 	if v.Spec.Value == "" {
 		return nil, fmt.Errorf("missing value")
 	}
-	err := s.authz.OnCreate(ctx, authInfo, v.Namespace, v.Name)
+	meta, err := utils.MetaAccessor(v)
+	if err != nil {
+		return nil, err
+	}
+	if meta.GetFolder() != "" {
+		return nil, fmt.Errorf("folders are not yet supported")
+	}
+
+	err = s.authz.OnCreate(ctx, authInfo, v.Namespace, v.Name)
 	if err != nil {
 		return nil, err
 	}
@@ -353,6 +361,13 @@ func (s *secureStore) Update(ctx context.Context, obj *secret.SecureValue) (*sec
 	}
 	if existing == nil {
 		return nil, fmt.Errorf("not found")
+	}
+	meta, err := utils.MetaAccessor(obj)
+	if err != nil {
+		return nil, err
+	}
+	if meta.GetFolder() != "" {
+		return nil, fmt.Errorf("folders are not yet supported")
 	}
 
 	changed := []string{}

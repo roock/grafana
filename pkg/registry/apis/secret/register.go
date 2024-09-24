@@ -66,6 +66,9 @@ func (b *SecretAPIBuilder) UpdateAPIGroupInfo(apiGroupInfo *genericapiserver.API
 	storage[resource.StoragePath("decrypt")] = &secretDecrypt{
 		store: b.store,
 	}
+	storage[resource.StoragePath("history")] = &secretHistory{
+		store: b.store,
+	}
 	apiGroupInfo.VersionedResourcesStorageMap[secret.VERSION] = storage
 	return nil
 }
